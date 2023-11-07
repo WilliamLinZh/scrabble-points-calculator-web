@@ -1,20 +1,19 @@
 # scrabble-points-calculator-web
 
-## Installation Options
-### IDE
-VS Code preferred
+## Local development
 
-### Node.js
-Install Node.js
+### Pre-requisites
+VS Code preferred
+Node 16 & Yarn
 
 ## How To Use
 ### Run Local Instance
-Go to project root and execute following commands:
-
-`npm install yarn`
-
+```bash
+# install dependencies :
 `yarn install`
 
+# start local frontend and connect to real backend API
 `yarn dev`
+```
 
 Access frontend web page with link: `http://127.0.0.1:5173/`

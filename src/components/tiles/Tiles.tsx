@@ -38,34 +38,36 @@ const Tiles = (props: TilesComponentProps) => {
             <div className={styles.text}>
                 Type Word to achieve high Score!
             </div>
-            <div className={styles.board}>
-                {
-                    chars.concat(Array(10 - chars.length).fill(' ')).map((char, i) => (
-                        <span key={`${char}_${i}`} className={styles.square_bg}>{char}</span>
-                    ))
-                }
-            </div>
+            <div className={styles.container}>
+                <div className={styles.board}>
+                    {
+                        chars.concat(Array(props.numberOfTiles - chars.length).fill(' ')).map((char, i) => (
+                            <span key={`${char}_${i}`} className={i < chars.length ? styles.square_bg_filled : styles.square_bg}>{char}</span>
+                        ))
+                    }
+                </div>
 
-            <div className={styles.text}>
-                Score: {score}
-            </div>
+                <div className={styles.text}>
+                    Score: {score}
+                </div>
 
-            <div className={styles.button_group}>
-                <button className={styles.button}
-                    type='button'
-                    onClick={resetTiles}>
-                    Reset Tiles
-                </button>
-                <button className={styles.button}
-                    type='button'
-                    onClick={saveScore}>
-                    Save Score
-                </button>
-                <button className={styles.button}
-                    type='button'
-                    onClick={viewTopScores}>
-                    View Top Scores
-                </button>
+                <div className={styles.button_group}>
+                    <button className={styles.button}
+                        type='button'
+                        onClick={resetTiles}>
+                        Reset Tiles
+                    </button>
+                    <button className={styles.button}
+                        type='button'
+                        onClick={saveScore}>
+                        Save Score
+                    </button>
+                    <button className={styles.button}
+                        type='button'
+                        onClick={viewTopScores}>
+                        View Top Scores
+                    </button>
+                </div>
             </div>
             <Modal
                 open={open}
@@ -75,12 +77,12 @@ const Tiles = (props: TilesComponentProps) => {
             >
                 <Box sx={style}>
                     <Typography id="modal-modal-title" variant="h6" component="h2">
-                        {notification.title}
+                        <div className={styles.notification_title}>{notification.title}</div>
                     </Typography>
                     <Typography id="modal-modal-description" sx={{ mt: 2 }}>
                         <div className={styles.board}>
-                            {notification.message?.concat(Array(props.numberOfTiles - notification.message.length).fill(' ')).map((char, i) => (
-                            <span key={`${char}_${i}`} className={styles.square_bg}>{char}</span>
+                            {notification.message?.concat(Array(10 - notification.message.length).fill(' ')).map((char, i) => (
+                                <span key={`${char}_${i}`} className={notification.message && i < notification.message.length ? styles.square_bg_score : styles.square_bg}>{char}</span>
                             ))}
                         </div>
                     </Typography>

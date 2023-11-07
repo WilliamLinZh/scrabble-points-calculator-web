@@ -91,7 +91,7 @@ export const usePointCalculator = () => {
     const viewTopScores = async () => {
 		const topTenScores = await API.scoreController.getTopTenScores();
         console.log(topTenScores.data);
-        setNotification({'title':'Top 10 Scores:', 'message': topTenScores.data});
+        setNotification({'title':'Top 10 Scores', 'message': topTenScores.data});
         setOpen(true)
 	};
 

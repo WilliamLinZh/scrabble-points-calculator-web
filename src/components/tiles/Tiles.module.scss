@@ -1,13 +1,4 @@
-.board {
-    display: flex;
-    flex-direction: row;
-    gap: 10px;
-    align-items: center;
-    justify-content: center;
-}
-
-.square_bg {
-    background: #cfcfcf;
+@mixin square {
     width: 40px;
     height: 40px;
     font-size: 24px;
@@ -20,6 +11,34 @@
     font-weight: 600;
 }
 
+.container {
+    display: flex;
+    flex-direction: column;
+}
+
+.board {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+}
+
+.square_bg {
+    background: #cfcfcf;
+    @include square;
+}
+
+.square_bg_filled {
+    background: #02b875;
+    @include square;
+}
+
+.square_bg_score {
+    background: #ffeba3;
+    @include square;
+}
+
 .button_group {
     display: flex;
     flex-direction: row;
@@ -29,14 +48,20 @@
 }
 
 .button {
-    margin-top: 20px;
-    background: #f6ff00;
+    margin-top: 10px;
+    background: #0085f230;
     color: #333;
     width: 30%;
 }
 
 .text {
-    margin-top: 20px;
+    margin-top: 40px;
     margin-bottom: 20px;
     text-align: left;
+}
+
+.notification_title {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    text-align: center;
 }
