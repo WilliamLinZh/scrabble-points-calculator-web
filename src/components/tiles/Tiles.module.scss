@@ -1,0 +1,42 @@
+.board {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+}
+
+.square_bg {
+    background: #cfcfcf;
+    width: 40px;
+    height: 40px;
+    font-size: 24px;
+    text-transform: uppercase;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    color: #333;
+    font-weight: 600;
+}
+
+.button_group {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: left;
+    justify-content: left;
+}
+
+.button {
+    margin-top: 20px;
+    background: #f6ff00;
+    color: #333;
+    width: 30%;
+}
+
+.text {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    text-align: left;
+}
