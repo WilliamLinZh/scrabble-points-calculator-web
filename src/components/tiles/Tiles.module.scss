@@ -34,6 +34,11 @@
     @include square;
 }
 
+.square_bg_to_be_filled {
+    background: #29ADB2;
+    @include square;
+}
+
 .square_bg_score {
     background: #ffeba3;
     @include square;

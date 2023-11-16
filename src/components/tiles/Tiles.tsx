@@ -3,6 +3,12 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import styles from './Tiles.module.scss';
 
+import { usePointCalculator } from './hooks/usePointCalculator';
+
+export interface TilesComponentProps {
+    numberOfTiles: number;
+}
+
 const style = {
     position: 'absolute',
     top: '50%',
@@ -15,12 +21,6 @@ const style = {
     p: 4,
   };
 
-import { usePointCalculator } from './hooks/usePointCalculator';
-
-export interface TilesComponentProps {
-    numberOfTiles: number;
-}
-
 const Tiles = (props: TilesComponentProps) => {
     const {
         resetTiles,
@@ -31,7 +31,7 @@ const Tiles = (props: TilesComponentProps) => {
         open,
         handleClose,
         notification,
-    } = usePointCalculator();
+    } = usePointCalculator(props.numberOfTiles);
     
     return (
         <>
@@ -41,8 +41,10 @@ const Tiles = (props: TilesComponentProps) => {
             <div className={styles.container}>
                 <div className={styles.board}>
                     {
-                        chars.concat(Array(props.numberOfTiles - chars.length).fill(' ')).map((char, i) => (
-                            <span key={`${char}_${i}`} className={i < chars.length ? styles.square_bg_filled : styles.square_bg}>{char}</span>
+                        chars.concat(Array(props.numberOfTiles - chars.length > 0 ? 1 : 0).fill('👉'))
+                        .concat(Array(props.numberOfTiles - chars.length <= 1 ? 0 : (props.numberOfTiles - chars.length - 1)).fill(' '))
+                        .map((char, i) => (
+                            <span key={`${char}_${i}`} className={i < chars.length ? styles.square_bg_filled : (i == chars.length ? styles.square_bg_to_be_filled : styles.square_bg)}>{char}</span>
                         ))
                     }
                 </div>
@@ -79,13 +81,11 @@ const Tiles = (props: TilesComponentProps) => {
                     <Typography id="modal-modal-title" variant="h6" component="h2">
                         <div className={styles.notification_title}>{notification.title}</div>
                     </Typography>
-                    <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                        <div className={styles.board}>
-                            {notification.message?.concat(Array(10 - notification.message.length).fill(' ')).map((char, i) => (
-                                <span key={`${char}_${i}`} className={notification.message && i < notification.message.length ? styles.square_bg_score : styles.square_bg}>{char}</span>
-                            ))}
-                        </div>
-                    </Typography>
+                    <div className={styles.board}>
+                        {notification.message?.concat(Array(10 - notification.message.length).fill(' ')).map((char, i) => (
+                            <span key={`${char}_${i}`} className={notification.message && i < notification.message.length ? styles.square_bg_score : styles.square_bg}>{char}</span>
+                        ))}
+                    </div>
                 </Box>
             </Modal>
         </>

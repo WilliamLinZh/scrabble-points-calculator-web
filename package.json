@@ -9,7 +9,7 @@
     "preview": "vite preview",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "lint:scss": "stylelint ./src/**/*.scss",
-    "test": "jest"
+    "test": "jest --coverage"
   },
   "dependencies": {
     "@babel/core": "^7.23.2",

@@ -6,7 +6,7 @@ interface notificationDto {
     'message'?: number[];
 }
 
-export const usePointCalculator = () => {
+export const usePointCalculator = (numberOfTiles: number = 10) => {
     const [chars, setChars] = useState<string[]>([]);
     const [score, setScore] = useState<number>(0);
     const [open, setOpen] = useState(false);
@@ -102,7 +102,7 @@ export const usePointCalculator = () => {
             setChars((chars) => {return chars.length > 0 ? [...chars].slice(0,-1) : [];});
             console.log("4" + chars);
         } else if (keyInput.length == 3) {
-            setChars((chars) => chars.length < 10 ?  [...chars, e.key] : chars);
+            setChars((chars) => chars.length < numberOfTiles ?  [...chars, e.key] : chars);
         }
     }
 
